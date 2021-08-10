@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		E5F4313A26C1CFE200A986C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F4313926C1CFE200A986C6 /* main.m */; };
+		E5F4314626C237C500A986C6 /* GetExtAudioFileAudioDataFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F4314226C237C500A986C6 /* GetExtAudioFileAudioDataFormat.m */; };
+		E5F4314726C237C500A986C6 /* GetNumberOfFramesInFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F4314326C237C500A986C6 /* GetNumberOfFramesInFile.m */; };
+		E5F4314826C237C500A986C6 /* CheckALError.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F4314426C237C500A986C6 /* CheckALError.m */; };
+		E5F4314926C237C500A986C6 /* OpenAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F4314526C237C500A986C6 /* OpenAudioFile.m */; };
+		E5F4314F26C237DA00A986C6 /* CheckError.m in Sources */ = {isa = PBXBuildFile; fileRef = E5F4314E26C237DA00A986C6 /* CheckError.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +30,17 @@
 /* Begin PBXFileReference section */
 		E5F4313626C1CFE200A986C6 /* OpenALStreamingExample */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenALStreamingExample; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5F4313926C1CFE200A986C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E5F4314226C237C500A986C6 /* GetExtAudioFileAudioDataFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetExtAudioFileAudioDataFormat.m; sourceTree = "<group>"; };
+		E5F4314326C237C500A986C6 /* GetNumberOfFramesInFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetNumberOfFramesInFile.m; sourceTree = "<group>"; };
+		E5F4314426C237C500A986C6 /* CheckALError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckALError.m; sourceTree = "<group>"; };
+		E5F4314526C237C500A986C6 /* OpenAudioFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenAudioFile.m; sourceTree = "<group>"; };
+		E5F4314A26C237D200A986C6 /* GetExtAudioFileAudioDataFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetExtAudioFileAudioDataFormat.h; sourceTree = "<group>"; };
+		E5F4314B26C237D200A986C6 /* CheckALError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckALError.h; sourceTree = "<group>"; };
+		E5F4314C26C237D200A986C6 /* GetNumberOfFramesInFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetNumberOfFramesInFile.h; sourceTree = "<group>"; };
+		E5F4314D26C237D200A986C6 /* OpenAudioFile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenAudioFile.h; sourceTree = "<group>"; };
+		E5F4314E26C237DA00A986C6 /* CheckError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckError.m; sourceTree = "<group>"; };
+		E5F4315026C237E200A986C6 /* CheckError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckError.h; sourceTree = "<group>"; };
+		E5F4315126C2386B00A986C6 /* AppState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppState.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +73,36 @@
 		E5F4313826C1CFE200A986C6 /* OpenALStreamingExample */ = {
 			isa = PBXGroup;
 			children = (
+				E5F4314126C2377800A986C6 /* AudioUtils */,
+				E5F4314026C2375500A986C6 /* Utils */,
 				E5F4313926C1CFE200A986C6 /* main.m */,
+				E5F4315126C2386B00A986C6 /* AppState.h */,
 			);
 			path = OpenALStreamingExample;
+			sourceTree = "<group>";
+		};
+		E5F4314026C2375500A986C6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E5F4315026C237E200A986C6 /* CheckError.h */,
+				E5F4314E26C237DA00A986C6 /* CheckError.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E5F4314126C2377800A986C6 /* AudioUtils */ = {
+			isa = PBXGroup;
+			children = (
+				E5F4314B26C237D200A986C6 /* CheckALError.h */,
+				E5F4314A26C237D200A986C6 /* GetExtAudioFileAudioDataFormat.h */,
+				E5F4314C26C237D200A986C6 /* GetNumberOfFramesInFile.h */,
+				E5F4314D26C237D200A986C6 /* OpenAudioFile.h */,
+				E5F4314426C237C500A986C6 /* CheckALError.m */,
+				E5F4314226C237C500A986C6 /* GetExtAudioFileAudioDataFormat.m */,
+				E5F4314326C237C500A986C6 /* GetNumberOfFramesInFile.m */,
+				E5F4314526C237C500A986C6 /* OpenAudioFile.m */,
+			);
+			path = AudioUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +161,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5F4314926C237C500A986C6 /* OpenAudioFile.m in Sources */,
+				E5F4314F26C237DA00A986C6 /* CheckError.m in Sources */,
+				E5F4314626C237C500A986C6 /* GetExtAudioFileAudioDataFormat.m in Sources */,
 				E5F4313A26C1CFE200A986C6 /* main.m in Sources */,
+				E5F4314826C237C500A986C6 /* CheckALError.m in Sources */,
+				E5F4314726C237C500A986C6 /* GetNumberOfFramesInFile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
