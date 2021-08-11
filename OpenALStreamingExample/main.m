@@ -106,7 +106,7 @@ AudioStreamBasicDescription SpecifyAudioFormatToConverTo(ExtAudioFileRef extAudi
 void ReadAudioDataAndStoreInTempBuffer(AppState *appState,
                                        UInt8 **oTempBuffer,
                                        UInt32 *oTempBufferSize) {
-  *oTempBufferSize = appState->framesToPutInEachBuffer * appState->convertToDataFormat.mBytesPerFrame;
+  *oTempBufferSize = appState->bufferSizeInFrames * appState->convertToDataFormat.mBytesPerFrame;
   (*oTempBuffer) = malloc(*oTempBufferSize);
 
   // This is a temporary structure that will basically be used as an interface
@@ -121,7 +121,7 @@ void ReadAudioDataAndStoreInTempBuffer(AppState *appState,
   UInt32 framesToRead = 0;
   do {
     abl.mBuffers[0].mData = (*oTempBuffer) + totalFramesRead * appState->convertToDataFormat.mBytesPerFrame;
-    framesToRead = appState->framesToPutInEachBuffer - totalFramesRead;
+    framesToRead = appState->bufferSizeInFrames - totalFramesRead;
     abl.mBuffers[0].mDataByteSize = framesToRead * appState->convertToDataFormat.mBytesPerFrame;
     
     CheckError(ExtAudioFileRead(appState->extAudioFile,
@@ -129,9 +129,9 @@ void ReadAudioDataAndStoreInTempBuffer(AppState *appState,
                                 &abl),
                "Reading data from the audio file");
     totalFramesRead += framesToRead;
-    appState->totalFramesPutInBuffers += framesToRead;
-  } while(totalFramesRead < appState->framesToPutInEachBuffer &&
-          appState->totalFramesPutInBuffers < appState->totalFramesToPutInBuffers);
+    appState->totalFramesEnqueued += framesToRead;
+  } while(totalFramesRead < appState->bufferSizeInFrames &&
+          appState->totalFramesEnqueued < appState->totalFramesToEnqueue);
 }
 
 void CopyTempBufferDataToALBuffer(ALuint buffer,
@@ -199,13 +199,13 @@ void CreateAndFillBuffers(AppState *appState, const char *fileName) {
   
   appState->convertToDataFormat = SpecifyAudioFormatToConverTo(appState->extAudioFile);
   
-  appState->totalFramesToPutInBuffers = fileLengthFrames * appState->convertToDataFormat.mSampleRate / inputDataFormat.mSampleRate;
+  appState->totalFramesToEnqueue = fileLengthFrames * appState->convertToDataFormat.mSampleRate / inputDataFormat.mSampleRate;
   
-  appState->totalFramesPutInBuffers = 0;
+  appState->totalFramesEnqueued = 0;
   
-  appState->framesToPutInEachBuffer = appState->convertToDataFormat.mSampleRate * BUFFER_DURATION_SECONDS;
+  appState->bufferSizeInFrames = appState->convertToDataFormat.mSampleRate * BUFFER_DURATION_SECONDS;
   
-  appState->duration = appState->totalFramesToPutInBuffers / appState->convertToDataFormat.mSampleRate;
+  appState->duration = appState->totalFramesToEnqueue / appState->convertToDataFormat.mSampleRate;
     
   alGenBuffers(BUFFER_COUNT, appState->buffers);
   CheckALError("AL generating buffers");

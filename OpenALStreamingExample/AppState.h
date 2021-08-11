@@ -19,9 +19,9 @@ typedef struct _AppState {
   ALuint buffers[BUFFER_COUNT];
   ALuint sources[1];
   
-  UInt64 totalFramesToPutInBuffers;
-  UInt64 totalFramesPutInBuffers;
-  UInt64 framesToPutInEachBuffer;
+  UInt64 totalFramesToEnqueue;
+  UInt64 totalFramesEnqueued;
+  UInt64 bufferSizeInFrames;
   
   double duration;
 } AppState;
